@@ -1,0 +1,75 @@
+<include src="/pages/components/fuli-top.wxml"></include>
+<view class="joke-wrap" style="background:{{joke.bgColor}};top: {{showTopAward?210:0}}rpx;" wx:if="{{jokeList[joke.index].type==='text'&&!diamond.isShowQiandao}}">
+    <view class="joke-text-wrap">
+        <text class="text" style="background:{{joke.bgColor}};">{{jokeList[joke.index].content}}</text>
+    </view>
+</view>
+<view class="loading-img-wrap" wx:if="{{joke.isShowLoadingImg}}">
+    <view class="loading-top">
+        <image class="loading-pic" src="https://image.guang.j.cn/bbs/pages/joke/static/imgs/loading.png"></image>
+    </view>
+</view>
+<block wx:if="{{!auth.showPanel}}">
+    <view class="joke-media-wrap" style="background:#000;overflow:hidden;top: {{showTopAward?210:0}}rpx;" wx:if="{{jokeList[joke.index].type!=='text'&&!diamond.isShowQiandao}}">
+        <view scrollY class="joke-img-wrap" wx:if="{{jokeList[joke.index].type==='image'}}">
+            <image backgroundPosition="center" bindload="imgLoad" class="joke-img" mode="widthFix" src="{{jokeList[joke.index].picWithWHUrls[0].pic_url}}" style="height:{{joke.imgHeight}}px;"></image>
+            <view class="joke-img-text-wrap">
+                <image style class="img-text-bg" src="/static/jokedetail/text-bg.png"></image>
+                <view class="joke-img-text">{{jokeList[joke.index].content}}</view>
+            </view>
+        </view>
+        <view scrollY class="joke-video-wrap" wx:if="{{jokeList[joke.index].type==='video'}}">
+            <video autoplay="{{true}}" bindended="showOverWrap" class="joke-video" id="jokeVideo" src="{{jokeList[joke.index].videoList[0].url}}">
+                <cover-view class="joke-video-text">
+                    <cover-image class="pic" src="/static/jokedetail/text-bg.png"></cover-image>
+                    <cover-view class="txt">{{jokeList[joke.index].content}}</cover-view>
+                </cover-view>
+                <cover-view bindtap="preItem" class="btn-pre" style="margin-top: {{showTopAward?-90:-175}}rpx">
+                    <cover-image class="i" mode="widthFix" src="/static/jokedetail/icon-pre.png"></cover-image>
+                </cover-view>
+                <cover-view class="video-over-wrap" wx:if="{{isShowOver}}">
+                    <cover-image class="icon-face" mode="widthFix" src="/static/jokedetail/icon-face.png"></cover-image>
+                    <button class="btn-share" openType="share">喜欢就分享给大家！</button>
+                    <cover-view bindtap="replayVideo" class="replay {{system=='android'?'mb60':''}}">
+                        <cover-image class="icon-replay" mode="widthFix" src="/static/jokedetail/icon-replay.png"></cover-image>
+                        <cover-view class="txt">重播</cover-view>
+                    </cover-view>
+                </cover-view>
+                <cover-view class="share-tip" wx:if="{{showJokeShareTip}}">
+                    <cover-view style="margin-top: 12rpx">点此看更多精彩</cover-view>
+                </cover-view>
+            </video>
+        </view>
+        <view class="ad-wrap" wx:if="{{jokeList[joke.index].type=='ad'}}">
+            <image class="ad-img" data-app-id="{{jokeList[joke.index].appid}}" data-type="{{jokeList[joke.index].typeId}}" data-urlpath="{{jokeList[joke.index].urlpath}}" mode="widthFix" src="{{jokeList[joke.index].imgUrl}}"></image>
+            <navigator appId="{{jokeList[joke.index].appid}}" bindtap="tongJiJokeAd" extraData="" openType="navigate" path="{{jokeList[joke.index].urlpath}}" style="width:100%; height:100%; opacity:0; position:absolute; left:0; top:0;z-index: 2" target="miniProgram" version="release"></navigator>
+        </view>
+        <view class="cpm-ad-wrap" wx:if="{{jokeList[joke.index].type=='cpmAd'}}">
+            <ad unitId="adunit-f2a468158888c9e1"></ad>
+        </view>
+        <view class="pre-img-wrap">
+            <image src="{{joke.preImg}}"></image>
+        </view>
+    </view>
+</block>
+<view bindtap="preItem" class="btn-pre" style="margin-top: {{showTopAward?-90:-175}}rpx" wx:if="{{jokeList[joke.index].type!=='video'}}">
+    <image class="i" mode="widthFix" src="/static/jokedetail/icon-pre.png"></image>
+</view>
+<view class="share-tip-unvideo" wx:if="{{showJokeShareTip}}">
+    <view style="margin-top: 12rpx">点此看更多精彩</view>
+</view>
+<view class="contrl-wrap">
+    <view bindtap="exec" class="btn-home" data-a="icon去首页">
+        <image mode="aspectFit" src="/static/jokedetail/icon-home-balck@2x.png"></image>
+    </view>
+    <view class="btn-share-wrap">
+        <image class="img" src="/static/jokedetail/btn-share.png"></image>
+        <button class="btn-share" openType="share"></button>
+    </view>
+    <form bindsubmit="change" class="get-formid" reportSubmit="true">
+        <image class="btn-try" src="/static/jokedetail/btn-try.png"></image>
+        <button class="btn-get" formType="submit"></button>
+    </form>
+    <view class="jianjian" wx:if="{{showJokeShareTip}}"></view>
+</view>
+<include src="../components/auth-fudan.wxml"></include>

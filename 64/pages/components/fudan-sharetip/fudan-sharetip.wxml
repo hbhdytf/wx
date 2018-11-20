@@ -1,0 +1,12 @@
+<view class="fudan-share-tip" wx:if="{{showFudanTip}}">
+    <view class="content">
+        <view class="c1">分享完成！</view>
+        <view class="c2">
+            <view>每加入<text class="color-e43255">1位</text>好友</view>
+            <view>获得 <text class="color-e43255">现金福蛋1枚</text>
+            </view>
+        </view>
+        <view bindtap="goToFudan" class="c3">查看现金福蛋 >></view>
+        <view bindtap="closeHandler" class="close">×</view>
+    </view>
+</view>

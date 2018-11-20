@@ -1,0 +1,57 @@
+<view catchtouchmove="stopPop" class="str-popup" wx:if="{{diamond.isShowQiandao&&strongPop.isLoaded}}">
+    <view class="content" wx:if="{{strongPop.preJoinLottery}}">
+        <view class="c1 new-user" wx:if="{{diamond.newUserFlag}}">
+            <text>签到成功，获得 <text class="color-de302d">1</text>个</text>
+            <image src="/static/icon-diamond-red.png"></image>
+        </view>
+        <block wx:else>
+            <view class="c1 old-user" wx:if="{{strongPop.preShare}}">
+                <view>
+                    <text>签到成功，获得 <text class="color-de302d">1</text>个</text>
+                    <image src="/static/icon-diamond-red.png"></image>
+                </view>
+                <button bindtap="tongJiCommon" class="btn share-double" data-a="分享翻倍" data-s="award-double-click" openType="share">分享翻倍</button>
+            </view>
+            <view class="c1 old-user has-share" wx:else>
+                <text>翻倍成功,获得</text>
+                <image src="/static/icon-diamond-red.png"></image>
+            x <text class="color-de302d" style="padding: 0 10rpx;">2 </text>
+            </view>
+        </block>
+        <view bindtap="tongJiCommon" class="c2" data-s="{{strongPop.preShare?diamond.newUserFlag?'new-award-click':'award-click':'double-click'}}">
+            <image mode="aspectFit" src="{{strongPop.proInfo.imgUrl}}"></image>
+        </view>
+        <view class="c3">
+            <button bindtap="cancelJoin" class="btn btn-pop-common btn-cancel">放弃</button>
+            <form reportSubmit bindsubmit="joinLottery" data-id="{{strongPop.proInfo.proId}}">
+                <button class="btn btn-pop-common btn-join" formType="submit">点击抽奖</button>
+            </form>
+        </view>
+        <view class="c4">每次抽奖消耗1个
+        <image src="/static/icon-diamond-red.png"></image>
+        </view>
+    </view>
+    <view class="after-join" wx:else>
+        <view class="c0">抽奖成功，明天12:00开奖</view>
+        <view class="c1">更多抽奖查看福利频道</view>
+        <view class="c2">
+        剩余 <text class="color-de302d">{{diamond.num}}</text> 个
+        <image src="/static/icon-diamond-red.png"></image>
+        </view>
+        <view class="c3">
+            <view class="item">
+                <text class="ib">每邀请一位群友加入+2个</text>
+                <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+                <text class="ib">,无上限哦</text>
+            </view>
+            <view class="item">
+                <text class="ib">每日访问+1个</text>
+                <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+            </view>
+        </view>
+        <view class="lay-bottom">
+            <button bindtap="tongJiCommon" class="fuli-btn btn-block" data-a="发给群友" data-s="success-item-click" openType="share">发给群友</button>
+        </view>
+        <view bindtap="changeStrPop" class="close" data-a="close">×</view>
+    </view>
+</view>

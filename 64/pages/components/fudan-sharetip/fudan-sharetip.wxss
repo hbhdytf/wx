@@ -1,0 +1,58 @@
+.fudan-share-tip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0,.8);
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 580rpx;
+    height: 380rpx;
+    background-color: #fff;
+}
+
+.c1 {
+    height: 102rpx;
+    line-height: 102rpx;
+    text-align: center;
+    font-size: 34rpx;
+    color: #333333;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.c2 {
+    line-height: 52rpx;
+    font-size: 38rpx;
+    text-align: center;
+    padding: 40rpx 0 20rpx;
+}
+
+.c3 {
+    font-size: 28rpx;
+    line-height: 28rpx;
+    padding: 42rpx 0;
+    color: #999999;
+    text-align: center;
+}
+
+.color-e43255 {
+    color: #e43255;
+}
+
+.close {
+    position: absolute;
+    top: 10rpx;
+    right: 18rpx;
+    font-size: 50rpx;
+    padding: 0 10rpx;
+    color: #cccccc;
+}

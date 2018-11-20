@@ -1,0 +1,13 @@
+<view bindtap="closeAuthPanel" class="panel-allow-wrap" wx:if="{{auth.showPanel}}">
+    <view catchtap="stopPop" class="panel">
+        <image bindtap="closeAuthPanel" class="close" src="/static/icon-close.png"></image>
+        <view class="img tc mb30">
+            <image class="auth-img" src="/static/main-pic.png"></image>
+        </view>
+        <view class="tc f42 mb30">只允许女士发言~</view>
+        <view class="btn-auth tc">
+            <view bindtap="goin" class="btn btn-in tc f34">我是女生</view>
+            <button bindgetuserinfo="userInfoHandler" class="ib" openType="getUserInfo" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; opacity: 0;">授权</button>
+        </view>
+    </view>
+</view>

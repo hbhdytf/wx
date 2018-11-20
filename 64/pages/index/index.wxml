@@ -1,0 +1,71 @@
+<view class="top-bug" style="height:{{showTopAward?300:74}}rpx;"></view>
+<view class="updata-tip" style="display:{{lazyLoad.showUpTip}};top:{{showTopAward?250:20}}rpx">内容已更新</view>
+<view class="menu formid-menu ">
+    <view class="act">热门</view>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="fuli">
+        <button class="formid-btn" formType="submit"></button>
+		福利
+	</form>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="list">
+        <button class="formid-btn" formType="submit"></button>
+		话题
+	</form>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="messageList">
+        <button bindtap="hideMsgDot" class="formid-btn" formType="submit"></button>
+		消息
+		<view class="dot" wx:if="{{isShowMsgDot}}"></view>
+    </form>
+</view>
+<include src="/pages/components/fuli-top.wxml"></include>
+<form reportSubmit bindsubmit="selectFormId" class="novel-tip" data-handler="goToNovel" wx:if="{{kuaikanRecentReadUrl}}">
+    <image src="/static/xiaoshuo/icon-01.jpg"></image>
+    <button class="formid-item-btn" formType="submit"></button>
+</form>
+<view class="theme-list">
+    <block wx:for="{{lazyLoad.list}}" wx:key="{{item.postId}}">
+        <block wx:if="{{item.type!=='ad'}}">
+            <form reportSubmit bindsubmit="selectFormId" class="theme-item formid-theme-item" data-handler="goDetail" data-id="{{item.postId}}" data-type="{{item.type}}" wx:if="{{item.type!=='postad'}}">
+                <block wx:if="{{item.type==='postvideo'||item.type==='jokevideo'}}">
+                    <view class="title two-line">{{item.content||'这个太逗了！快看看！'}}</view>
+                    <view class="video-poster">
+                        <image lazyLoad class="thumb-pic" mode="aspectFill" src="{{item.videoList[0].thumbPic}}"></image>
+                        <image class="icon-play" src="/static/icon-play@2x.png"></image>
+                        <view class="video-time font-24">{{item.videoDuration}}</view>
+                    </view>
+                </block>
+                <block wx:if="{{item.type==='posttext'}}">
+                    <view class="inline-wrap" wx:if="{{item.picUrlList.length==1}}">
+                        <text class="title inline">{{item.content}}</text>
+                        <image lazyLoad class="pic-one" src="{{item.picUrlList[0]}}"></image>
+                    </view>
+                    <view wx:else>
+                        <view class="title">{{item.content}}</view>
+                        <view class="pic-list">
+                            <view class="one" wx:if="{{index<3}}" wx:for="{{item.picUrlList}}" wx:key="{{index}}">
+                                <image lazyLoad class="img" src="{{item}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{item.type==='huati'}}">
+                    <view class="theme-show" wx:if="{{item.picUrlList.length==1}}">
+                        <image class="pic" mode="widthFix" src="{{item.picUrlList[0]}}"></image>
+                        <view class="tit">{{item.content}}</view>
+                    </view>
+                </block>
+                <button class="formid-item-btn" formType="submit"></button>
+            </form>
+        </block>
+        <block wx:else>
+            <view bindtap="tongJiAdId" class="ad-wrap" data-id="{{item.id}}" wx:if="{{!(item.postion===0&&!showPositionOneAd)}}">
+                <image class="ad-image" mode="widthFix" src="{{item.imgUrl}}"></image>
+                <navigator openType="navigate" style="width:100%; height:100%; opacity:0; position:absolute; left:0; top:0" url="{{item.urlpath}}"></navigator>
+            </view>
+        </block>
+    </block>
+</view>
+<view class="updata-tip-bottom" wx:if="{{lazyLoad.isLoading}}">加载中...</view>
+<include src="../components/auth-fudan.wxml"></include>
+<view bindtap="routeHandler" class="fudan" data-a="去活动">
+    <image src="/static/fudan/talk-03@2x.png"></image>
+</view>

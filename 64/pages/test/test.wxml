@@ -1,0 +1,19 @@
+<view class="opration-wrap" style="height: {{input.focus?'auto':120+'rpx'}}">
+    <image class="redBag" src="/static/fudan/talk-04@2x.png"></image>
+    <view class="hot-share">
+        <textarea autoHeight bindblur="blurHandler" bindfocus="focusHandler" bindinput="detailHandler" bindlinechange="countHeight" class="btn-reply" cursorSpacing="20" data-a="修改评论内容" fixed="{{true}}" maxlength="{{3500}}" placeholder="聊几句，被回复领现金~" showConfirmBar="{{false}}" type="text" value="{{comment.myCommentText}}"></textarea>
+        <view bindtap="detailHandler" class="btn-send" data-a="提交评论" wx:if="{{input.showSend}}">发送</view>
+        <block wx:else>
+            <view class="like-wrap">
+                <image class="pic" src="/static/icon-like.png" wx:if="{{thumbsUpInfo.givenThumbsUp}}"></image>
+                <image bindtap="detailHandler" class="pic" data-a="主贴点赞" src="/static/icon-unlike.png" wx:else></image>
+                <span>{{thumbsUpInfo.thumbsUpCountForRoot}}</span>
+            </view>
+            <view class="share-detail">
+                <image src="/static/icon-detailshare@2x.png"></image>
+                <span>分享</span>
+                <button class="btn-share" openType="share"></button>
+            </view>
+        </block>
+    </view>
+</view>

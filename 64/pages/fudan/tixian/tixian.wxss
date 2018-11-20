@@ -1,0 +1,145 @@
+page {
+    background-color: #fff;
+}
+
+.tixian {
+    background-color: #fff;
+}
+
+.tixian .c1 {
+    height: 174rpx;
+    background-color: #f5f5f5;
+    padding: 34rpx;
+}
+
+.tixian .c2 {
+    padding: 32rpx;
+}
+
+.tixian .c2 .title {
+    margin-bottom: 36rpx;
+    font-weight: bold;
+}
+
+.tixian .c2 form .outlist {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tixian .c2 form .outlist .item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 206rpx;
+    height: 142rpx;
+    border: 1px solid #a2a2a2;
+    border-radius: 10rpx;
+    overflow: hidden;
+    margin-bottom: 40rpx;
+}
+
+.tixian .c2 form .outlist .item .vip {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #ee7b00;
+    margin-top: 16rpx;
+}
+
+.tixian .c2 form .outlist .item:last-child {
+    margin-bottom: 0;
+}
+
+.tixian .c2 form .outlist .item .flag {
+    position: absolute;
+    top: -32rpx;
+    left: -32rpx;
+    width: 64rpx;
+    height: 64rpx;
+    background-color: #fa9e00;
+    transform: rotateZ(-45deg);
+}
+
+.tixian .c2 form .outlist .item .flag .white-check {
+    position: absolute;
+    top: 48rpx;
+    left: 28rpx;
+    width: 12rpx;
+    height: 10rpx;
+    border-bottom: 4rpx solid #fff;
+    border-left: 4rpx solid #fff;
+}
+
+.tixian .c2 form .outlist .item.active {
+    border-color: #fa9e00;
+}
+
+.tixian .c2 form .tixian {
+    background-color: #1aad19;
+    color: #fff;
+    font-size: 36rpx;
+    margin-top: 80rpx;
+    margin-bottom: 20rpx;
+}
+
+.success-tip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-tip .content {
+    position: relative;
+}
+
+.success-tip .content .c1 {
+    position: absolute;
+    width: 100%;
+    top: 80rpx;
+    left: 0;
+    font-size: 48rpx;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success-tip .content .c2 {
+    position: absolute;
+    width: 498rpx;
+    height: 112rpx;
+    line-height: 112rpx;
+    bottom: 42rpx;
+    left: 35rpx;
+    font-size: 34rpx;
+    color: #ff1c4b;
+    border-radius: 112rpx;
+    font-weight: bold;
+    background: linear-gradient(to top,#ffcd0a,#fff591);
+}
+
+.success-tip .content .c2 button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.success-tip .content .close {
+    position: absolute;
+    top: 0;
+    right: 34rpx;
+    padding: 0 10rpx;
+    color: #cccccc;
+    font-size: 60rpx;
+}

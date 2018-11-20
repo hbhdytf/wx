@@ -1,0 +1,10 @@
+page {
+}
+
+.myfudan {
+    position: relative;
+}
+
+.myfudan .rule {
+    width: 100%;
+}

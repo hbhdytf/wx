@@ -1,0 +1,236 @@
+<scroll-view scrollY="{{true}}" style="width:100%; min-height: 100%;background-color: #fff">
+    <view class="{{router.style=='hot'?'content-hot':'content'}}">
+        <view class="title-hot" wx:if="{{router.style=='hot'}}">
+            <image class="user-header" src="{{content.user.headUrl}}"></image>
+            <view class="user-content">
+                <view class="user-name">{{content.user.nickName}}</view>
+                <view class="user-floor">1楼  {{content.dealTimeInfo}}</view>
+            </view>
+        </view>
+        <view class="title-wrap" wx:else>
+            <image class="icon-vote" src="{{content.isVote?'/static/icon-vote.png':'/static/icon-theme.png'}}"></image>
+            <view class="title">{{content.title}}</view>
+        </view>
+        <rich-text nodes="{{nodes}}"></rich-text>
+        <view class="">
+            <block wx:for="{{content.richNodes}}" wx:key="{{index}}">
+                <view class="text" wx:if="{{item.name==='div'}}">{{item.children[0].text}}</view>
+                <view class="content-pic" wx:if="{{item.name==='img'}}">
+                    <image mode="widthFix" src="{{item.attrs.src}}"></image>
+                </view>
+            </block>
+        </view>
+        <form reportSubmit bindsubmit="selectFormId" class="novel-last" data-handler="goToNovel" wx:if="{{kuaikanReadUrl}}">
+      阅读余下全文
+      <button class="formid-vote-btn" formType="submit"></button>
+        </form>
+        <view class="vote-wrap" wx:if="{{content.isVote}}">
+            <view class="title">
+                <image class="i" src="/static/icon-vote2.png"></image>
+        {{vote.isShowResult?'投票结果':'投票选项'}}
+      </view>
+            <view class="vote-list" wx:if="{{!vote.isShowResult}}">
+                <form reportSubmit bindsubmit="selectFormId" class="vote-item btn-pink formid-form-vote" data-a="投票" data-handler="detailHandler" data-index="{{index}}" wx:for="{{vote.voteData.voteOptionList}}" wx:key="{{index}}">
+            {{item.optionText}}
+            <button class="formid-vote-btn" formType="submit"></button>
+                </form>
+            </view>
+            <view class="vote-result" wx:else>
+                <view class="vote-item" style="border:1px solid {{vote.bgArr[index]}}" wx:for="{{vote.voteData.voteOptionList}}" wx:key="{{index}}">
+                    <view class="bg" style="background:{{vote.bgArr[index]}}; width:{{item.optionVotePercent}}%"></view>
+                    <text class="t">{{item.optionText}}</text>
+                    <text class="num">{{item.optionVotePercent}}%</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="{{router.style=='hot'?'comment-hot':'comment-wrap'}}">
+        <view class="panel" wx:if="{{comment.hotReplies&&comment.hotReplies.length!=0}}">
+            <view class="title">
+                <image class="i" src="/static/icon-comment-hot.png" style="margin-top:-8rpx"></image>
+        热门评论
+      </view>
+            <view class="comment-list">
+                <view class="comment-item" wx:if="{{item.showContent!=''}}" wx:for="{{comment.hotReplies}}" wx:key="{{index}}">
+                    <view class="user-header">
+                        <image class="pic" src="{{item.user.headUrl}}"></image>
+                    </view>
+                    <view class="comment-detail clear-fix">
+                        <view class="like-wrap" wx:if="{{!item.isMy}}">
+                            <span class="fc-888 mr16" wx:if="{{item.thumbsUpCount}}">
+                  {{item.thumbsUpCount}}
+                </span>
+                            <image class="pic" src="/static/icon-like.png" wx:if="{{item.givenThumbsUp}}"></image>
+                            <image bindtap="detailHandler" class="pic" data-a="回贴点赞" data-hot="true" data-index="{{index}}" src="/static/icon-unlike.png" wx:else></image>
+                        </view>
+                        <view class="fc-888 f26 lh60 mb10 flex-left">
+                            <view class="user-name">{{item.user.nickName}}</view>
+                            <view class="user-floor">{{item.level}}楼  {{item.dealTimeInfo}}</view>
+                        </view>
+                        <view class="f34 lh48">{{item.showContent}}</view>
+                        <view bindtap="hideMainReply" class="reply-icon" data-replyid="{{item.id}}">
+                            <view class="white-cir"></view>
+                            <view class="white-cir"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="panel" wx:if="{{comment.list.length!=0}}">
+            <view class="title">
+                <image class="i" src="/static/icon-comment2.png" style="margin-top:-8rpx"></image>
+        所有评论
+        <view bindtap="sortReply" class="daoxu">
+                    <image src="/static/icon-zhengxu.png" wx:if="{{replySorts}}"></image>
+                    <image src="/static/icon-daoxu@2x.png" wx:else></image>
+          倒序
+        </view>
+            </view>
+            <view class="comment-list" wx:if="{{comment.list.length!=0}}">
+                <view class="comment-item" wx:if="{{item.showContent!=''}}" wx:for="{{comment.list}}" wx:key="{{index}}">
+                    <view class="user-header">
+                        <image class="pic" src="{{item.user.headUrl}}"></image>
+                    </view>
+                    <view class="comment-detail clear-fix">
+                        <view class="like-wrap" wx:if="{{!item.isMy}}">
+                            <span class="fc-888 mr16" wx:if="{{item.thumbsUpCount}}">
+                  {{item.thumbsUpCount}}
+                </span>
+                            <image class="pic" src="/static/icon-like.png" wx:if="{{item.givenThumbsUp}}"></image>
+                            <image bindtap="detailHandler" class="pic" data-a="回贴点赞" data-hot="false" data-index="{{index}}" src="/static/icon-unlike.png" wx:else></image>
+                        </view>
+                        <view class="fc-888 f26 lh60 mb10 flex-left">
+                            <view class="user-name">{{item.user.nickName}}</view>
+                            <view class="user-floor">{{item.level}}楼  {{item.dealTimeInfo}}</view>
+                        </view>
+                        <view class="f34 lh48">{{item.showContent}}</view>
+                        <view class="reply-owner f26" wx:if="{{item.parent}}">
+                            <text class="fc-888">{{item.parent.user.nickName}} ：</text>
+                            <text class="fc-666">{{item.parent.showContent}}</text>
+                        </view>
+                        <view bindtap="hideMainReply" class="reply-icon" data-replyid="{{item.id}}" wx:if="{{!item.isMy}}">
+                            <view class="white-cir"></view>
+                            <view class="white-cir"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="p20 fc-888" wx:else>还没有评论</view>
+        </view>
+        <view class="bottom-bug"></view>
+    </view>
+</scroll-view>
+<image bindtap="goHome" class="go-home3" src="/static/icon-home3.png" wx:if="{{showHome}}"></image>
+<block wx:if="{{router.style=='hot'}}">
+    <view bind:tap="nextPost" class="next-btn" wx:if="{{isShowNextBtn}}">换一篇</view>
+    <block wx:if="{{comment.isShowCtrol}}">
+        <view class="opration-wrap" style="height: {{input.focus?'auto':120+'rpx'}}" wx:if="{{input.mainReply}}">
+            <image class="redBag" src="/static/fudan/talk-04@2x.png"></image>
+            <view class="hot-share">
+                <textarea autoHeight="{{autoHeight}}" bindblur="blurHandler" bindfocus="focusHandler" bindinput="detailHandler" bindlinechange="countHeight" class="btn-reply" cursorSpacing="20" data-a="修改评论内容" fixed="{{true}}" maxlength="{{3500}}" placeholder="聊几句，被回复领现金~" showConfirmBar="{{false}}" type="text" value="{{comment.myCommentText}}"></textarea>
+                <view bindtap="detailHandler" class="btn-send" data-a="提交评论" wx:if="{{input.showSend}}">发送</view>
+                <block wx:else>
+                    <view class="like-wrap">
+                        <image class="pic" src="/static/icon-like.png" wx:if="{{thumbsUpInfo.givenThumbsUp}}"></image>
+                        <image bindtap="detailHandler" class="pic" data-a="主贴点赞" src="/static/icon-unlike.png" wx:else></image>
+                        <span>{{thumbsUpInfo.thumbsUpCountForRoot}}</span>
+                    </view>
+                    <view class="share-detail">
+                        <image src="/static/icon-detailshare@2x.png"></image>
+                        <span>分享</span>
+                        <button class="btn-share" openType="share"></button>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <view class="opration-wrap" style="height: {{input.focus?'auto':120+'rpx'}}" wx:else>
+            <view class="hot-share">
+                <textarea autoHeight fixed autoFocus="{{true}}" bindblur="blurHandler" bindfocus="focusHandler" bindinput="detailHandler" class="btn-reply" cursorSpacing="20" data-a="修改评论内容" placeholder="聊几句，被回复领现金~" showConfirmBar="{{false}}" type="text" value="{{comment.myCommentText}}"></textarea>
+                <view bindtap="detailHandler" class="btn-send" data-a="回帖提交评论" wx:if="{{input.showSend}}">发送</view>
+                <block wx:else>
+                    <view class="like-wrap">
+                        <image class="pic" src="/static/icon-like.png" wx:if="{{thumbsUpInfo.givenThumbsUp}}"></image>
+                        <image bindtap="detailHandler" class="pic" data-a="主贴点赞" src="/static/icon-unlike.png" wx:else></image>
+                        <span>{{thumbsUpInfo.thumbsUpCountForRoot}}</span>
+                    </view>
+                    <view class="share-detail">
+                        <image src="/static/icon-detailshare@2x.png"></image>
+                        <span>分享</span>
+                        <button class="btn-share" openType="share"></button>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
+</block>
+<block wx:else>
+    <view class="opration-wrap" wx:if="{{comment.isShowCtrol}}">
+        <view bindtap="detailHandler" class="btn-wrap" data-a="返回首页">
+            <image class="icon" src="/static/icon-home-2.png"></image>
+            <view class="">首页</view>
+        </view>
+        <view class="line"></view>
+        <view bindtap="detailHandler" class="write" data-a="显示评论面板">
+            <image class="" mode="widthFix" src="/static/icon-write.png"></image>
+            <view class="">我要发言</view>
+        </view>
+        <view class="line"></view>
+        <form reportSubmit bindsubmit="selectFormId" class="btn-wrap formid-form-detail">
+            <image class="icon" src="/static/icon-share-2.png"></image>
+            <view class="">分享</view>
+            <button class="btn-share" formType="submit" openType="share"></button>
+        </form>
+    </view>
+</block>
+<view bindtap="detailHandler" class="comment-input-wrap" data-a="隐藏评论面板" wx:if="{{comment.isShowPanel}}">
+    <view catchtap="stopPop" class="comment-input-panel">
+        <view class="comment-input">
+            <textarea bindinput="detailHandler" class="txt-ipt" data-a="修改评论内容" fixed="true" focus="{{comment.isFocus}}" maxlength="800" placeholder="说点什么吧..."></textarea>
+        </view>
+        <view class="btn-wrap">
+            <view bindtap="detailHandler" class="btn fc-888" data-a="隐藏评论面板" style="border-right:1rpx solid #e6e6e6">
+          取消
+        </view>
+            <view bindtap="detailHandler" class="btn fc-fc6" data-a="{{huaTiA}}">确定</view>
+        </view>
+    </view>
+</view>
+<view bindtap="detailHandler" class="pop-share-wrap" data-a="关闭评论分享" wx:if="{{comment.isShowShare}}">
+    <view catchtap="stopPop" class="pop-share">
+        <view bindtap="detailHandler" class="close" data-a="关闭评论分享">
+            <image class="icon-close" mode="widthFix" src="/static/icon-close.png"></image>
+        </view>
+        <view class="tc f42 mb30">发言成功！</view>
+        <view class="tc mb30">看看有多少好友支持你~~</view>
+        <view class="tc">
+            <view class="btn-pink btn-share">
+                <image class="icon" mode="widthFix" src="/static/icon-share.png"></image>
+          分享到好友群
+          <button class="b" openType="share"></button>
+            </view>
+        </view>
+    </view>
+</view>
+<view bindtap="detailHandler" class="pop-share-wrap" data-a="关闭投票分享" wx:if="{{vote.isShowShare}}">
+    <view catchtap="stopPop" class="pop-share">
+        <view bindtap="detailHandler" class="close" data-a="关闭投票分享">
+            <image class="icon-close" mode="widthFix" src="/static/icon-close.png"></image>
+        </view>
+        <view class="tc f42 mb30" style="line-height:120rpx;">想知道好友怎么看吗？</view>
+        <view class="tc">
+            <view class="btn-pink btn-share">
+                <image class="icon" mode="widthFix" src="/static/icon-share.png"></image>
+          分享到好友群
+          <button class="b" openType="share"></button>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../components/auth.wxml"></include>
+<view class="reply-success" wx:if="{{actTalk.replyTimes===1&&actTalk.showReplySuccessPanel}}">
+    <view class="wrap">
+        <image src="/static/fudan/talk-05@2x.png"></image>
+        <view bindtap="exec" class="close" data-a="关闭分享提示弹窗"></view>
+        <button bindtap="exec" class="share-btn" data-a="分享到群" openType="share"></button>
+    </view>
+</view>

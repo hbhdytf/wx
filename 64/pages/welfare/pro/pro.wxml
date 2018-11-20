@@ -1,0 +1,133 @@
+<view class="page-pro">
+    <view class="pro-box" style="position: relative;">
+        <view class="sec pro-item" style="margin: 0;">
+            <image backgroundPosition="center" backgroundSize="cover" class="pro-img" src="{{pro.pic}}"></image>
+            <view class="pro-info">
+                <view class="inner">
+                    <view class="title">
+                        <view class="bold font-32 ellipsis">奖品：{{pro.name}} <text wx:if="{{pro.quantity>1}}">× {{pro.quantity}}</text>
+                        </view>
+                    </view>
+                    <view class="winner-info font-32 color-666" wx:if="{{pro.state==='未参与已开奖'||pro.state==='中奖-未领取'||pro.state==='未中奖'||pro.state==='中奖-已领取'}}">
+                        <text class="color-e34239">中奖用户:</text>
+                        <image class="avatar-img" src="{{pro.winnerList[0].headUrl}}" wx:if="{{pro.winnerList.length>0}}"></image>
+                        <text>{{pro.winnerList[0].nickName}}</text>
+                    </view>
+                    <view class="brief font-30 {{pro.state==='未中奖'?'with-border':''}}" wx:else>
+                        <view class="ib label-text text-red" wx:if="{{pro.hasEnter}}">
+                            <image class="icon-yes" src="/static/icon-yes.png"></image>
+                            <text>已参与 |</text>
+                        </view>
+                        <view class="ib label-text" wx:else>
+                            <text>未参与 |</text>
+                        </view>
+                        <view class="ib open-time text-gray">距开奖仅剩 {{pro.countdownMSObj.hou}}:{{pro.countdownMSObj.min}}:{{pro.countdownMSObj.sec}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="icon-tip" wx:if="{{pro.state==='参与抽奖'||pro.state==='等待开奖'}}">
+            <image src="/static/icon-tip.png"></image>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='参与抽奖'}}">
+        <view class="lucky c">
+            <form reportSubmit bindsubmit="exec" class="circle-box" data-a="参与抽奖">
+                <view class="circle">
+                    <text>参与抽奖</text>
+                    <button class="abs-hidden-btn" formType="submit"></button>
+                </view>
+            </form>
+            <view style="margin-top: 20rpx;">
+                <text class="text-gray" wx:if="{{pro.enterCount===0}}">{{pro.enterCount}}人抽奖，快来做第一个抽奖的人吧~</text>
+                <text class="text-gray" wx:else>已有{{pro.enterCount}}人参与</text>
+            </view>
+            <view class="list">
+                <view class="item" wx:for="{{pro.enterList}}" wx:key="{{index}}">
+                    <image class="avatar-img" src="{{item.headUrl}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="lucky-share">
+            <button bindtap="exec" class="fuli-btn btn-blue btn-block" data-a="去首页">
+                <image class="icon-share" src="/static/icon-1@2x.png"></image>
+                <text class="ib">查看其他抽奖</text>
+            </button>
+            <button class="fuli-btn btn-red btn-block" openType="share">
+                <image class="icon-share" src="/static/icon-2@2x.png"></image>
+                <text class="ib">分享给群友</text>
+            </button>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='等待开奖'}}">
+        <view class="lucky c">
+            <view class="circle-box">
+                <view class="circle" style="background: #999999;">等待开奖</view>
+            </view>
+            <view style="margin-bottom: 20rpx;">
+                <text class="text-gray">已有 {{pro.enterCount}} 人参与</text>
+            </view>
+            <view class="list">
+                <view class="item" wx:for="{{pro.enterList}}" wx:key="{{index}}">
+                    <image class="avatar-img" src="{{item.headUrl}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="lucky-share">
+            <button bindtap="exec" class="fuli-btn btn-blue btn-block" data-a="去首页">
+                <image class="icon-share" src="/static/icon-1@2x.png"></image>
+                <text class="ib">查看其他抽奖</text>
+            </button>
+            <button class="fuli-btn btn-red btn-block" openType="share">
+                <image class="icon-share" src="/static/icon-2@2x.png"></image>
+                <text class="ib">分享给群友</text>
+            </button>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='未中奖'}}">
+        <view class="state-emoj white-bg c">
+            <view class="font-40 color-333">很遗憾,您未中奖</view>
+            <view class="mg-50">
+                <view bindtap="exec" class="fuli-btn btn-block" data-a="去首页">快去看看其他抽奖吧</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='中奖-未领取'}}">
+        <view class="state-emoj white-bg c">
+            <view class="font-40" style="padding-bottom: 40rpx">恭喜您,中奖了！</view>
+            <view style="overflow: hidden; padding: 0 10rpx;">
+                <view bindtap="exec" class="fuli-btn" data-a="领奖">领奖</view>
+                <view bindtap="exec" class="fuli-btn btn-blank mg-30" data-a="去首页">快去看看其他抽奖吧</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='中奖-已领取'}}">
+        <view class="state-emoj white-bg c">
+            <view class="font-40" style="padding-bottom: 40rpx">恭喜您,中奖了！</view>
+            <view style="overflow: hidden; padding: 0 10rpx;">
+                <view class="fuli-btn btn-gray">已领奖</view>
+                <view bindtap="exec" class="fuli-btn btn-blank mg-30" data-a="去首页">快去看看其他抽奖吧</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='未参与已开奖'}}">
+        <view class="state-emoj white-bg c">
+            <view class="font-40" style="color: #333;">很遗憾,您没有参加抽奖</view>
+            <view class="mg-50">
+                <view bindtap="exec" class="fuli-btn btn-block" data-a="去首页">快去看看其他抽奖吧</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{pro.state==='中奖-未领取'||pro.state==='中奖-已领取'||pro.state==='未中奖'||pro.state==='未参与已开奖'}}">
+        <view class="join-member">
+            <text class="text-gray font-24">共有 {{pro.enterCount}} 人参与</text>
+            <view class="ib list">
+                <view class="item" wx:for="{{pro.enterList}}" wx:key="{{index}}">
+                    <image src="{{item.headUrl}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <include src="/pages/components/diamond"></include>
+</view>
+<include src="/pages/components/auth-fuli.wxml"></include>

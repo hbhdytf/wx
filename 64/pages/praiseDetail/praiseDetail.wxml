@@ -1,0 +1,14 @@
+<view class="praise-page">
+    <view class="praise-item" wx:for="{{msgList}}" wx:key="{{index}}">
+        <view class="avatar">
+            <image src="{{item.user.headUrl}}"></image>
+        </view>
+        <view class="praise-detail">
+            <view class="praise-user">
+                <view class="username">{{item.user.nickName}}</view>
+                <view class="interval">{{item.rewardTime}}</view>
+            </view>
+            <view>{{item.content}}</view>
+        </view>
+    </view>
+</view>

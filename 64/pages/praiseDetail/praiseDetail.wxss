@@ -1,0 +1,36 @@
+.praise-page {
+    border-top: 2rpx solid #dedede;
+}
+
+.praise-item {
+    display: flex;
+    width: 100%;
+    padding: 40rpx 20rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #ececec;
+}
+
+.avatar image {
+    width: 84rpx;
+    height: 84rpx;
+    border-radius: 50%;
+}
+
+.praise-detail {
+    flex: 1;
+    padding-left: 35rpx;
+    font-size: 32rpx;
+}
+
+.praise-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.interval {
+    font-size: 24rpx;
+    color: #bbb;
+}

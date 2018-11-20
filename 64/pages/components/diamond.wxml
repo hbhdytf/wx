@@ -1,0 +1,50 @@
+<view bindtap="execDiamond" data-a="toggle-签到规则面板" id="diamond" style="top:{{router.page==='pro'?60:156}}rpx">
+    <image class="icon-diamond" src="/static/icon-diamond-white.png"></image>
+    <text class="ib">{{diamond.num||0}}</text>
+</view>
+<view bindtap="execDiamond" class="mask mask-diamond mask-diamond-me" data-a="toggle-签到规则面板" wx:if="{{diamond.isShowRule}}">
+    <view catchtap="stopPropagation" class="inner">
+        <view class="lay-top c font-42">
+            <text class="ib bold">{{diamond.num===0?'你的':'每次抽奖消耗 1 个'}}</text>
+            <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+            <text class="ib bold" wx:if="{{diamond.num===0}}">用光啦</text>
+            <image bindtap="execDiamond" class="icon-close" data-a="toggle-签到规则面板" src="/static/icon-close.png"></image>
+        </view>
+        <view class="lay-middle font-28">
+            <view class="list">
+                <view class="item">
+                    <text class="ib">每邀请一位群友加入+2个</text>
+                    <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+                    <text class="ib">,无上限哦</text>
+                </view>
+                <view class="item">
+                    <text class="ib">每日访问+1个</text>
+                    <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="lay-bottom">
+            <button class="fuli-btn btn-block" openType="share">发给群友</button>
+        </view>
+    </view>
+</view>
+<view bindtap="execDiamond" class="mask mask-diamond mask-diamond-other" data-a="toggle-签到面板" wx:if="{{diamond.isShowQiandao}}">
+    <view catchtap="stopPropagation" class="inner">
+        <view class="lay-top c font-42">
+            <text class="ib bold">签到成功,获得 {{diamond.signCoin}} 个</text>
+            <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+            <image bindtap="execDiamond" class="icon-close" data-a="toggle-签到面板" src="/static/icon-close.png"></image>
+        </view>
+        <view class="lay-middle font-28">
+            <view class="list">
+                <view class="item">
+                    <text class="ib">签到奖励，获得1个</text>
+                    <image class="icon-diamond" src="/static/icon-diamond-red.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="lay-bottom">
+            <view bindtap="execDiamond" class="fuli-btn btn-block" data-a="toggle-签到面板">确定</view>
+        </view>
+    </view>
+</view>

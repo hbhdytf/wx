@@ -1,0 +1,56 @@
+.theme-list {
+    padding: 16rpx;
+    background-color: #f6f6f6;
+}
+
+.theme-list .theme-item {
+    position: relative;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16rpx;
+    border-radius: 20rpx;
+}
+
+.theme-list .theme-item .pic {
+    width: 100%;
+    vertical-align: top;
+}
+
+.theme-list .theme-item .bottom {
+    height: 125rpx;
+    background: #fff;
+    padding: 10rpx 22rpx;
+    box-sizing: border-box;
+    color: #666;
+}
+
+.theme-list .theme-item .bottom .title {
+    font-size: 36rpx;
+    line-height: 66rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #333;
+}
+
+.theme-list .theme-item .bottom .icon-view {
+    width: 37rpx;
+    height: 25rpx;
+    vertical-align: middle;
+}
+
+.theme-list .theme-item .bottom .icon-comment {
+    width: 25rpx;
+    height: 25rpx;
+    vertical-align: middle;
+}
+
+.dot {
+    position: absolute;
+    width: 16rpx;
+    height: 16rpx;
+    right: 40rpx;
+    top: 0;
+    border-radius: 50%;
+    background-color: #ef5b5b;
+}

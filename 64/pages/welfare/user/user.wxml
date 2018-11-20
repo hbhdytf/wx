@@ -1,0 +1,58 @@
+<view class="user-box fudan-user-box">
+    <view class="user-left">
+        <view class="" style="margin-right: 15rpx;">
+            <image class="avatar-img" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="nickname">
+            <text>{{userInfo.nickName}}</text>
+        </view>
+    </view>
+    <view class="yue font-24">
+        <view class="color-999">现金金额</view>
+        <view class="color-e02e24 money">
+            <text>¥</text>
+            <text class="font-38">{{accoutInfo.totalMoney}}</text>
+        </view>
+    </view>
+    <view class="yue">
+        <view bindtap="routeHandler" class="tixian {{accoutInfo.totalMoney>0?'':'bgc-afacac'}}" data-a="去提现">提现</view>
+    </view>
+</view>
+<view style="min-height: 650rpx;">
+    <view class="record white-bg">
+        <view class="title">开奖记录</view>
+        <view class="list" wx:if="{{record.list.length>0}}">
+            <view bindtap="exec" class="item" data-a="去详情页" data-index="{{index}}" wx:for="{{record.list}}" wx:key="{{index}}">
+                <view class="fl">
+                    <image backgroundPosition="center" backgroundSize="cover" src="{{item.pic}}?imageMogr2/gravity/NorthEast/crop/!375x375a60a0"></image>
+                </view>
+                <view class="fr" style="padding-top: 20rpx;" wx:if="{{item.winStatus===1}}">
+                    <view catchtap="exec" class="fuli-btn" data-a="领奖" data-index="{{index}}" style="padding: .5em 1em;">领奖</view>
+                </view>
+                <view class="ellipsis">
+                    <view class="title">
+                        <text class="text-pale" wx:if="{{item.winStatus===0}}">未中奖 | </text>
+                        <text class="text-red" wx:if="{{item.winStatus===1}}">未领奖 | </text>
+                        <text class="text-pale" wx:if="{{item.winStatus===2}}">已领奖 | </text>
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view>
+                        <text class="text-gray">开奖时间：{{item.openTime}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="text-pale" style="margin-top: 30rpx;" wx:if="{{record.list.length===0}}">
+            <text>暂无记录</text>
+        </view>
+    </view>
+</view>
+<view class="c" style="margin-bottom: 150rpx;">
+    <text class="text-gray font-24">联系我们：bd@langtaojin.com</text>
+</view>
+<div class="kefu" style="position:fixed;bottom:125rpx;right: 25rpx; z-index:1000;width: 138rpx;height: 138rpx">
+    <button openType="contact" style="position:absolute;width: 138rpx;height: 138rpx;padding: 0;border-radius: 69rpx;border: 1px solid #d1cece;">
+        <image src="/static/icon-kefu.png" style="width: 138rpx; height: 138rpx;border-radius: 69rpx"></image>
+    </button>
+</div>
+<include src="/pages/components/footer"></include>

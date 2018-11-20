@@ -1,0 +1,21 @@
+<view class="message-list-page">
+    <view class="message-list">
+        <view bindtap="viewPraiseDetail" class="msg-item" data-post="{{item.post}}" wx:for="{{messages}}" wx:key="{{index}}">
+            <view class="avatar-con">
+                <image mode="widthFix" src="{{item.icon.iconUrl}}"></image>
+            </view>
+            <view class="msg-detail">
+                <view class="username">{{item.title.title}}</view>
+                <view class="interval">{{item.rewardTime}}</view>
+                <view class="msg">{{item.contentDetail}}</view>
+                <view class="reply-con">
+                    <text>{{item.referenceContent}}</text>
+                    <view class="triangle"></view>
+                </view>
+                <view class="options">
+                    <view catchtap="viewPost" class="view-post" data-post-id="{{item.post.rootId}}">查看帖子</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

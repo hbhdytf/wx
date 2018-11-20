@@ -1,0 +1,77 @@
+page {
+    background-color: #f0f0f0;
+}
+
+.user-box {
+    background: #fff;
+    margin: 20rpx 0;
+    padding: 44rpx 20rpx;
+}
+
+.record {
+    padding: 30rpx 20rpx;
+    margin-bottom: 120rpx;
+}
+
+.record .list {
+}
+
+.record .list .item {
+    overflow: hidden;
+    padding: 30rpx 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.record .list .item:last-child {
+    border-bottom: none;
+}
+
+.record .list .item .fl {
+    margin-right: 30rpx;
+}
+
+.record .list .item .title {
+    margin-bottom: 15rpx;
+}
+
+.record .list .item .ellipsis {
+    line-height: 1.6em;
+}
+
+.record .list .item image {
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.fudan-user-box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0;
+}
+
+.fudan-user-box .money {
+    padding: 8rpx 0;
+    text-align: center;
+}
+
+.fudan-user-box .tixian {
+    background-color: #e02e24;
+    color: #fff;
+    width: 136rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    border-radius: 10rpx;
+}
+
+.color-999 {
+    color: #999;
+}
+
+.color-e02e24 {
+    color: #e02e24;
+}
+
+.fudan-user-box .tixian.bgc-afacac {
+    background-color: #afacac;
+}

@@ -1,0 +1,51 @@
+page {
+    background: #f0f0f0;
+}
+
+.page-index {
+    padding-bottom: 120rpx;
+    background: #f0f0f0;
+}
+
+.page-index .pro-list {
+    position: relative;
+}
+
+.page-index .pre-list {
+    background-color: #47259e;
+    padding: 0 16rpx 16rpx;
+}
+
+.page-index .pre-list .pre-title {
+    height: 150rpx;
+    line-height: 150rpx;
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
+}
+
+.page-index .pre-list .pre-title .pre-title-left {
+    position: relative;
+    top: -25rpx;
+    left: -12px;
+    padding: 0 50rpx;
+    border-bottom: 1px solid #fff;
+}
+
+.page-index .pre-list .pre-title .pre-title-right {
+    position: relative;
+    top: -25rpx;
+    left: 0;
+    padding: 0 50rpx;
+    border-bottom: 1px solid #fff;
+}
+
+.dot {
+    position: absolute;
+    width: 16rpx;
+    height: 16rpx;
+    right: 40rpx;
+    top: 0;
+    border-radius: 50%;
+    background-color: #ef5b5b;
+}

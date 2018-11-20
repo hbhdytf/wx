@@ -1,0 +1,60 @@
+<view class="myfudan">
+    <view class="u-banner">
+        <image class="e-talk" mode="widthFix" src="/static/fudan/talk-01@2x.png"></image>
+        <view bindtap="routeHandler" class="link-rule" data-a="去规则"></view>
+        <view bindtap="routeHandler" class="link-home" data-a="去首页"></view>
+    </view>
+    <view class="u-talk">
+        <view class="e-title flex-between-center font-28">
+            <view class="fc-333">奖励金</view>
+            <view bindtap="routeHandler" class="fc-f23715" data-a="去我的">去提现</view>
+        </view>
+        <view class="e-total-money fc-f23715 c">
+            <text class="font-42">¥</text>
+            <text class="font-80">{{accoutInfo.totalMoney}}</text>
+        </view>
+        <view class="e-detail-money">
+            <view class="e-tab">
+                <view bindtap="toggleTab" class="success flex-center-center flex-column {{currentTab==='success'?'fc-f23715':''}}" data-a="success">
+                    <view>互助成功（次）</view>
+                    <view>{{accoutInfo.helpSuccessNumber}}</view>
+                </view>
+                <view bindtap="toggleTab" class="pedding flex-center-center flex-column {{currentTab==='pedding'?'fc-f23715':''}}" data-a="pedding">
+                    <view>互助待响应（次）</view>
+                    <view>{{accoutInfo.noResponseNumber}}</view>
+                </view>
+            </view>
+            <view class="e-list font-28">
+                <block wx:if="{{currentTab==='success'}}">
+                    <view class="e-item flex-between-center" wx:for="{{accoutInfo.helpSuccessList}}" wx:key="{{index}}">
+                        <view class="flex-center-center">
+                            <image src="{{item.wechatHeadUrl}}"></image>
+                            <view>
+                                <view>{{item.wechatNickName}} 回应了你的关怀</view>
+                                <view class="font-24 fc-999">{{item.time}}</view>
+                            </view>
+                        </view>
+                        <view>¥{{item.money}}</view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="e-item flex-between-center" wx:for="{{accoutInfo.noResponseList}}" wx:key="{{index}}">
+                        <view class="flex-center-center">
+                            <image src="{{item.wechatHeadUrl}}"></image>
+                            <view>
+                                <view>{{item.wechatNickName}} 还没有回应</view>
+                                <view class="font-24 fc-999">{{item.time}}</view>
+                            </view>
+                        </view>
+                        <view bindtap="routeHandler" class="f-care" data-a="撩一下" data-postid="{{item.postId}}">聊几句</view>
+                    </view>
+                </block>
+            </view>
+            <view class="fc-999 c t-tip">仅显示最近20条记录</view>
+        </view>
+    </view>
+</view>
+<view class="fix-share">邀请好友
+  <button openType="share"></button>
+</view>
+<include src="/pages/components/auth-fudan.wxml"></include>

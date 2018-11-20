@@ -1,0 +1,9 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#f6f6f6",
+    "onReachBottomDistance": 600,
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "usingComponents": {
+        "header": "/pages/components/header/header"
+    }
+}

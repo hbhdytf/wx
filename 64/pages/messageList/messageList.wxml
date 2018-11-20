@@ -1,0 +1,70 @@
+<view class="message-list-page">
+    <view class="top-bug" style="height:{{showTopAward?300:74}}rpx;"></view>
+    <view class="menu formid-menu ">
+        <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="index">
+            <button class="formid-btn" formType="submit"></button>
+      热门
+    </form>
+        <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="fuli">
+            <button class="formid-btn" formType="submit"></button>
+      福利
+    </form>
+        <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="list">
+            <button class="formid-btn" formType="submit"></button>
+      话题
+    </form>
+        <view class="act">消息</view>
+    </view>
+    <block wx:if="{{messages&&messages.length>0}}">
+        <view class="message-list">
+            <block wx:for="{{messages}}" wx:key="{{item.msgId}}">
+                <view bindtap="toMsgDetailPage" class="msg-item {{item.replyButton==2?'replied':''}}" data-message="{{item}}" wx:if="{{item.itemType==0}}">
+                    <view class="avatar-con">
+                        <image src="{{item.icon.iconUrl}}"></image>
+                    </view>
+                    <view class="msg-detail">
+                        <view class="username">{{item.title.title}}</view>
+                        <view class="interval">{{item.rewardTime}}</view>
+                        <view class="msg">{{item.contentDetail}}</view>
+                        <view class="reply-con">
+                            <text>{{item.referenceContent}}</text>
+                            <view class="triangle"></view>
+                        </view>
+                        <view class="options">
+                            <view catchtap="viewPost" class="view-post" data-post-id="{{item.post.rootId}}">
+                查看帖子
+              </view>
+                            <text class="vertical-text">|</text>
+                            <view catchtap="replyHandle" class="reply" data-index="{{index}}" data-post="{{item.post}}" wx:if="{{item.replyButton!=0}}">
+                回复
+                <text wx:if="{{item.replyButton==2}}">（已回复）</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="toPraiseListPage" class="praise-entry" data-index="{{index}}" wx:if="{{item.itemType==1}}">
+                    <view class="praise-icon">
+                        <view class="dot" wx:if="{{item.newMsgCount>0}}"></view>
+                        <image mode="widthFix" src="/static/msg-praise.png"></image>
+                    </view>
+                    <view class="praise-con">
+                        <view class="title">赞</view>
+                        <view class="praise-detail">
+                            <text wx:if="{{item.newMsgCount>0}}">[{{item.newMsgCount}}条]</text>
+                            <text class="praise-text">{{item.content}}</text>
+                        </view>
+                    </view>
+                    <view class="arrow-right">
+                        <image mode="widthFix" src="/static/arrow-right.png"></image>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="reply-input" wx:if="{{isShowReplyArea}}">
+            <image class="redBag" src="/static/fudan/talk-04@2x.png"></image>
+            <textarea autoHeight="{{autoHeight}}" bindblur="hideReplyArea" bindinput="setReplyContent" bindlinechange="countHeight" cursorSpacing="20" fixed="{{true}}" focus="{{autoFocus}}" maxlength="{{3500}}" placeholder="聊几句，被回复领现金~" showConfirmBar="{{false}}" type="text"></textarea>
+            <view bindtap="replyPost" class="send-btn">发送</view>
+        </view>
+    </block>
+    <view class="no-message" wx:if="{{messages&&messages.length==0}}">暂无消息</view>
+</view>

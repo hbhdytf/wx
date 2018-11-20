@@ -1,0 +1,3 @@
+<view class="myfudan">
+    <image class="rule" mode="widthFix" src="/static/fudan/talk-02.png"></image>
+</view>

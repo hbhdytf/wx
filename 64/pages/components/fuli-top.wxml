@@ -1,0 +1,79 @@
+<block wx:if="{{showTopAward}}">
+    <view class="award-info" style="top: {{fuliTop}}rpx;" wx:if="{{awardPro.status===1}}">
+        <view bindtap="goToPro" wx:if="{{awardPro.state==='未中奖'}}">
+            <view class="award-flag" style="background-color: #de3f37;color: #fff;">已开奖</view>
+            <image class="award-img" src="{{awardPro.pic}}?imageMogr2/gravity/NorthEast/crop/!375x375a60a0"></image>
+            <view class="right-info">
+                <view style="display: flex;align-items: center;color: #000;margin-top: 8rpx;font-size: 38rpx;font-weight: bold;">
+                    <text class="color-e34239">中奖</text>
+                    <text style="padding: 0 10rpx;"> : </text>
+                    <view style="width: 284rpx;overflow-x: scroll;white-space: nowrap;display: flex;align-items: center">
+                        <block wx:for="{{awardPro.winnerList}}" wx:key="{{index}}">
+                            <image mode="aspectFit" src="{{item.headUrl}}" style="width: 50rpx;height: 50rpx;border-radius: 50%"></image>
+                            <text style="color: #666;">{{item.nickName}}</text>
+                        </block>
+                    </view>
+                </view>
+                <view style="line-height: 36rpx;color: #3d3d3d;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding-top: 38rpx">奖品：{{awardPro.name}}</view>
+            </view>
+            <image catchtap="goToPro" class="fr icon-r" src="/static/icon-r.png"></image>
+        </view>
+        <view wx:if="{{awardPro.state==='中奖-未领取'}}">
+            <view class="award-flag" style="background-color:#ffcbc9;color: #e14139;">已开奖</view>
+            <image bindtap="goToPro" class="award-img" src="{{awardPro.pic}}?imageMogr2/gravity/NorthEast/crop/!375x375a60a0"></image>
+            <view bindtap="goToPro" class="right-info">
+                <view>
+                    <text style="color: #ad0c26;font-size: 38rpx;font-weight: bold;">恭喜你，中奖啦~</text>
+                    <view style="line-height: 36rpx;color: #666;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">奖品：{{awardPro.name}}</view>
+                </view>
+                <view style="color: #666;margin-top: 8rpx">
+                    <text class="font-24">中奖用户</text>
+                    <text style="opacity:.6; "> | </text>
+                    <view style="display: inline-block;width: 284rpx;overflow-x: scroll;white-space: nowrap">
+                        <image mode="aspectFit" src="{{item.headUrl}}" style="width: 50rpx;height: 50rpx;margin: 0 12rpx;border-radius: 50%" wx:for="{{awardPro.winnerList}}" wx:key="{{index}}"></image>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="goToAddress" class="fuli-btn fr" style="margin-top: 76rpx;font-size: 24rpx;color: #fff;background-color:#dc0038;">去领奖</view>
+        </view>
+        <view bindtap="goToPro" wx:if="{{awardPro.state==='未参与已开奖'}}">
+            <view class="award-flag" style="background-color: #de3f37;color: #fff;">已开奖</view>
+            <image class="award-img" mode="aspectFit" src="{{awardPro.pic}}?imageMogr2/gravity/NorthEast/crop/!375x375a60a0"></image>
+            <view class="right-info">
+                <view>
+                    <text style="color: #000;font-size: 38rpx;font-weight: bold;">很遗憾，您未参加抽奖！</text>
+                    <view style="line-height: 36rpx;color: #3d3d3d;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">奖品：{{awardPro.name}}</view>
+                </view>
+                <view style="color: #666666;margin-top: 8rpx">
+                    <text style="color: #333;font-size: 24rpx">中奖用户</text>
+                    <text style="color: #c5dbf5;"> | </text>
+                    <view style="display: inline-block;width: 284rpx;overflow-x: scroll;white-space: nowrap">
+                        <image mode="aspectFit" src="{{item.headUrl}}" style="width: 50rpx;height: 50rpx;margin: 0 12rpx;border-radius: 50%" wx:for="{{awardPro.winnerList}}" wx:key="{{index}}"></image>
+                    </view>
+                </view>
+            </view>
+            <image catchtap="goToPro" class="fr icon-r" src="/static/icon-r.png"></image>
+        </view>
+    </view>
+    <view class="award-info" wx:else>
+        <view bindtap="goToPro">
+            <image class="award-img" src="{{awardPro.pic}}?imageMogr2/gravity/NorthEast/crop/!375x375a60a0"></image>
+            <block wx:if="{{isPreAwardIn}}">
+                <view class="right-info" style="height: 100%;display: flex;flex-direction: column;justify-content: center;padding-top: 0">
+                    <text style="color: #000;font-size: 38rpx;font-weight: bold;">您预约的抽奖已开始！</text>
+                    <view style="font-size: 30rpx;color: #3d3d3d;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">奖品：{{awardPro.name}}</view>
+                </view>
+                <image catchtap="goToPro" class="fr icon-r" src="/static/icon-r.png"></image>
+            </block>
+            <block wx:else>
+                <view class="right-info" style="height: 100%;display: flex;flex-direction: column;justify-content: center;padding-top: 0">
+                    <view style="line-height: 48rpx;font-size:38rpx;font-weight:bold;color: #000;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">您获得一次抽奖机会</view>
+                    <view style="position: relative;left: -6rpx;color: #666666;margin-top: 8rpx;width: 380rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+          奖品：{{awardPro.name}}
+        </view>
+                </view>
+                <image catchtap="goToPro" class="fr icon-r" src="/static/icon-r.png"></image>
+            </block>
+        </view>
+    </view>
+</block>

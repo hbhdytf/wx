@@ -1,0 +1,12 @@
+<view style="height:{{isx?'88px':'64px'}};">
+    <view class="header-wrap" style="background-color:{{backgroundColor}};color:{{color}};height:{{isx?'88px':'64px'}};padding-top:{{isx?'40px':'20px'}}">
+        <view class="header-title">
+            <view bindtap="arrowLeftHandle" class="left-back" data-a="back" wx:if="{{arrowLeft}}">
+                <view class="inner" style="border-left: 1px solid {{color}};border-bottom: 1px solid {{color}};" wx:if="{{!clickLeft}}"></view>
+                <slot></slot>
+            </view>
+      {{title}}
+    </view>
+    </view>
+    <view class="header-placeholder"></view>
+</view>

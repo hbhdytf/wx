@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "fudan-share-tip": "../components/fudan-sharetip/fudan-sharetip"
+    },
+    "onReachBottomDistance": 200,
+    "backgroundColor": "#f0f0f0"
+}

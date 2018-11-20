@@ -1,0 +1,7 @@
+<view id="footer">
+    <view class="flex">
+        <view bindtap="execFooter" data-a="footer 跳转" data-index="{{index}}" wx:for="{{footer.list}}" wx:key="{{index}}">
+            <image class="icon" src="/static/footer-{{item.name}}-{{router.page===item.name?'on':'off'}}.png"></image>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,32 @@
+<view class="top-bug"></view>
+<view class="menu formid-menu ">
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="index">
+        <button class="formid-btn" formType="submit"></button>
+		热门
+	</form>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="fuli">
+        <button class="formid-btn" formType="submit"></button>
+		福利
+	</form>
+    <view class="act">话题</view>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="messageList">
+        <button bindtap="hideMsgDot" class="formid-btn" formType="submit"></button>
+    消息
+		<view class="dot" wx:if="{{isShowMsgDot}}"></view>
+    </form>
+</view>
+<view class="theme-list">
+    <view bindtap="goDetail" class="theme-item" data-id="{{item.postId}}" wx:if="{{index<lazyLoad.num}}" wx:for="{{themeList}}" wx:key="{{index}}">
+        <image class="pic" mode="widthFix" src="{{item.picUrl}}"></image>
+        <view class="bottom">
+            <view class="title">{{item.title}}</view>
+            <view class="t f24">
+                <view class="ib mr36">
+                    <image class="icon-view" src="/static/icon-view.png"></image> {{item.readCount}} 浏览</view>
+                <view class="ib">
+                    <image class="icon-comment" src="/static/icon-comment.png"></image> {{item.replyCount}} 参与</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../components/auth.wxml"></include>

@@ -1,0 +1,207 @@
+page {
+    background: #f0f0f0;
+}
+
+.page-pro {
+    background: #f0f0f0;
+}
+
+.pro-item .pro-info .brief.with-border {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30rpx;
+}
+
+.state-emoj {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 500rpx;
+    margin: 10rpx 0;
+    padding: 0 64rpx;
+}
+
+.state-emoj .icon-emoj {
+    margin-right: 10rpx;
+}
+
+.lucky {
+    height: 524rpx;
+    padding-top: 112rpx;
+}
+
+.lucky .circle-box {
+    margin-bottom: 30rpx;
+}
+
+.lucky .circle-box .circle {
+    width: 200rpx;
+    height: 200rpx;
+    line-height: 200rpx;
+    background: #e24137;
+    border-radius: 50%;
+    color: #fff;
+    margin: 0 auto;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.lucky .list {
+}
+
+.lucky .list .item {
+    display: inline-block;
+    margin-right: 10rpx;
+}
+
+.lucky .list .item .avatar-img {
+    width: 58rpx;
+    height: 58rpx;
+}
+
+.lucky-share {
+    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-around;
+}
+
+.lucky-share button {
+    width: 308rpx;
+}
+
+.lucky-share button .icon-share {
+    margin-right: 12rpx;
+    width: 34rpx;
+    height: 34rpx;
+}
+
+.winner-box {
+    background: #fff;
+    padding: 35rpx;
+}
+
+.winner-box>.fl {
+    font-size: 30rpx;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+    padding-right: 30rpx;
+    margin-right: 20rpx;
+    margin-top: 30rpx;
+}
+
+.winner-box .list {
+}
+
+.winner-box .list .item {
+}
+
+.winner-box .list .item .avatar-img {
+}
+
+.winner-box .list .item .nickname {
+    width: 170rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.winner-box .list .item .nickname text {
+}
+
+.winner-box .inc-scroll-view {
+    overflow: hidden;
+}
+
+.winner-box .inc-scroll-view scroll-view .list {
+    white-space: nowrap;
+}
+
+.winner-box .inc-scroll-view scroll-view .list .item {
+    width: 170rpx;
+    text-align: center;
+    display: inline-block;
+}
+
+.winner-box .inc-scroll-view scroll-view .list .item .avatar-img {
+    margin-bottom: 10rpx;
+    color: #777777;
+}
+
+.join-member {
+    padding: 30rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #fff;
+}
+
+.join-member .list {
+    margin-left: 20rpx;
+}
+
+.join-member .list .item {
+    margin-right: 10rpx;
+    display: inline-block;
+}
+
+.join-member .list .item image {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+}
+
+.icon-tip {
+    position: absolute;
+    bottom: -52rpx;
+    left: 0;
+    width: 100%;
+    padding-top: 10rpx;
+    background-color: #f0f0f0;
+}
+
+.icon-tip image {
+    width: 100%;
+    height: 62rpx;
+}
+
+.color-e34239 {
+    color: #e34239;
+}
+
+.color-666 {
+    color: #666;
+}
+
+.color-333 {
+    color: #333;
+}
+
+.font-40 {
+    font-size: 40rpx;
+}
+
+.winner-info {
+    width: 100%;
+    height: 60rpx;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.winner-info .avatar-img {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 10rpx;
+}
+
+.state-emoj view {
+    display: block;
+}
+
+.mg-30 {
+    margin-top: 30rpx;
+}
+
+.mg-50 {
+    margin-top: 50rpx;
+}

@@ -1,0 +1,24 @@
+<view class="message-detail">
+    <view class="msg-item">
+        <view class="avatar-con">
+            <image src="{{messageDetail.icon.iconUrl}}"></image>
+        </view>
+        <view class="msg-detail">
+            <view class="username">{{messageDetail.title.title}}</view>
+            <view class="interval">{{messageDetail.rewardTime}}</view>
+            <view class="msg">{{messageDetail.contentDetail}}</view>
+            <view class="reply-con">
+                <text>{{messageDetail.referenceContent}}</text>
+                <view class="triangle"></view>
+            </view>
+            <view class="options">
+                <view bindtap="viewPost" class="view-post">查看帖子</view>
+            </view>
+        </view>
+    </view>
+    <view class="reply-input" style="padding-bottom: {{isx?'30px':'20rpx'}}">
+        <image class="redBag" src="/static/fudan/talk-04@2x.png"></image>
+        <textarea autoHeight="{{autoHeight}}" bindblur="blurHandle" bindfocus="focusHandle" bindinput="setReplyContent" bindlinechange="countHeight" cursorSpacing="20" fixed="{{true}}" maxlength="{{3500}}" placeholder="聊几句，被回复领现金~" showConfirmBar="{{false}}" type="text" value="{{replyContent}}"></textarea>
+        <view bindtap="replyPost" class="send-btn">发送</view>
+    </view>
+</view>

@@ -1,0 +1,88 @@
+<view class="top-bug"></view>
+<view class="menu formid-menu ">
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="index">
+        <button class="formid-btn" formType="submit"></button>
+    热门
+  </form>
+    <view class="act">福利</view>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="list">
+        <button class="formid-btn" formType="submit"></button>
+    话题
+  </form>
+    <form reportSubmit bindsubmit="selectFormId" class="formid-form" data-handler="toggleTab" data-tab="messageList">
+        <button bindtap="hideMsgDot" class="formid-btn" formType="submit"></button>
+    消息
+    <view class="dot" wx:if="{{isShowMsgDot}}"></view>
+    </form>
+</view>
+<view class="page-index">
+    <view style="line-height: 1.8em; color: #aaa; padding-top: 200rpx;" wx:if="{{pro.list.length===0&&pro.isLoadAll}}">
+        <view style class="c">每天奖品最迟于12:00上架</view>
+        <view style class="c">敬请期待</view>
+    </view>
+    <view class="pro-list" wx:else>
+        <view bindtap="exec" class="sec pro-item" data-a="跳转到产品页" data-index="{{index}}" style="margin-bottom:20rpx;" wx:for="{{pro.list}}" wx:key="{{index}}">
+            <image backgroundPosition="center" backgroundSize="cover" class="pro-img" src="{{item.pic}}?imageView2/1/w/750/format/jpg/q/60"></image>
+            <view class="pro-info">
+                <view class="inner">
+                    <view class="title">
+                        <view class="fuli-btn fr" style="margin-top: 20rpx;font-size: 26rpx;color: #fff;background-color:#999999;" wx:if="{{item.hasEnter}}">
+              已抽奖
+            </view>
+                        <block wx:else>
+                            <form reportSubmit bindsubmit="joinLottery" catchtap="stopPop" class="fr" data-id="{{item.id}}" style="position:relative;width:120rpx;height: 62rpx;line-height:62rpx;border-radius:31rpx;font-size: 26rpx;color: #fff;background-color:#e14139;text-align: center;margin-top: 20rpx" wx:if="{{item.countdownMS>0}}">
+                                <text>抽奖</text>
+                                <button formType="submit" style="position: absolute;top: 0;left:0;width:100%;height: 62rpx;border-radius:50%;opacity: 0;padding: 0;">抽奖</button>
+                            </form>
+                            <view class="fuli-btn fr" style="margin-top: 20rpx;font-size: 26rpx;color: #fff;background-color:#999999;" wx:else>
+                已开奖
+              </view>
+                        </block>
+                        <view class="bold font-32 ellipsis">奖品：{{item.name}} <text wx:if="{{item.quantity>1}}">× {{item.quantity}}</text>
+                        </view>
+                    </view>
+                    <view class="brief font-30">
+                        <view class="ib label-text text-red" wx:if="{{item.hasEnter}}">
+                            <image class="icon-yes" src="/static/icon-yes.png"></image>
+                            <text>已参与 |</text>
+                        </view>
+                        <view class="ib label-text text-gray" wx:else>
+                            <text>{{item.enterCount}} 人参与 |</text>
+                        </view>
+                        <view class="ib text-gray">距开奖仅剩 {{item.countdownMSObj.hou}}:{{item.countdownMSObj.min}}:{{item.countdownMSObj.sec}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="pre-list" wx:if="{{pro.isLoadAll&&pro.preList.length>0}}">
+        <view class="pre-title">
+            <text class="pre-title-left"></text>
+      预告
+      <text class="pre-title-right"></text>
+        </view>
+        <view class="sec pro-item" data-index="{{index}}" wx:for="{{pro.preList}}" wx:key="{{index}}">
+            <image backgroundPosition="center" backgroundSize="cover" class="pro-img" src="{{item.pic}}?imageView2/1/w/750/format/jpg/q/60"></image>
+            <view class="pro-info">
+                <view class="inner">
+                    <view class="title">
+                        <view class="fuli-btn fr" style="margin-top: 20rpx;font-size: 26rpx;color: #fff;background-color:#999999;" wx:if="{{item.hasPre}}">
+              已设提醒
+            </view>
+                        <form reportSubmit bindsubmit="preJoin" catchtap="stopPop" class="fr" data-id="{{item.id}}" data-index="{{index}}" style="position:relative;width:156rpx;height: 66rpx;line-height:66rpx;border-radius:33rpx;font-size: 26rpx;color: #fff;background-color:#00b4ff;text-align: center;margin-top: 20rpx" wx:else>
+                            <text>设置提醒</text>
+                            <button formType="submit" style="position: absolute;top: 0;left:0;width:100%;height: 66rpx;border-radius:50%;opacity: 0;padding: 0;">设置提醒</button>
+                        </form>
+                        <view class="bold font-32 ellipsis">奖品：{{item.name}}</view>
+                    </view>
+                    <view class="brief font-30">
+                        <view class="ib text-gray">开始时间 {{item.startTime}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <include src="/pages/components/footer"></include>
+    <include src="/pages/components/diamond"></include>
+</view>
+<include src="/pages/components/auth-fuli.wxml"></include>

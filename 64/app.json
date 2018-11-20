@@ -1,0 +1,33 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/list/list",
+        "pages/messageList/messageList",
+        "pages/praiseList/praiseList",
+        "pages/messageDetail/messageDetail",
+        "pages/praiseDetail/praiseDetail",
+        "pages/detail/detail",
+        "pages/jokedetail/jokedetail",
+        "pages/jokelong/jokelong",
+        "pages/welfare/fuli/fuli",
+        "pages/welfare/pro/pro",
+        "pages/welfare/user/user",
+        "pages/welfare/address/address",
+        "pages/fudan/index/index",
+        "pages/fudan/rule/rule",
+        "pages/fudan/tixian/tixian",
+        "pages/novel/novel",
+        "pages/test/test"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#f6f6f6",
+        "navigationBarTitleText": "她社区",
+        "navigationBarTextStyle": "black",
+        "onReachBottomDistance": 500,
+        "backgroundColor": "#f6f6f6"
+    },
+    "networkTimeout": {
+        "request": 10000
+    }
+}

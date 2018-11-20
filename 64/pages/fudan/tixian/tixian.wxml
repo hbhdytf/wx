@@ -1,0 +1,36 @@
+<view class="tixian">
+    <view class="c1">
+        <view class="font-24" style="font-weight: bold">账户余额</view>
+        <view>
+            <text class="font-36" style="position: relative;top: -28rpx;">￥</text>
+            <text class="font-72">{{accoutInfo.totalMoney}}</text>
+        </view>
+    </view>
+    <view class="c2">
+        <view class="title font-32">提现金额</view>
+        <form reportSubmit bindsubmit="formSubmitHandler">
+            <view class="outlist">
+                <view bindtap="chooseMoney" class="item font-32 {{currentMoney===item?'active':''}}" data-a="{{item.amount}}" wx:for="{{outList}}" wx:key="{{item}}">{{item.amount}}元
+          <view class="vip" wx:if="{{item.isVip}}">新用户专享</view>
+                    <view class="flag" wx:if="{{currentMoney===item.amount}}">
+                        <view class="white-check"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="font-24" style="color: #888888;margin-top: 16rpx">提现到微信钱包</view>
+            <button bindtap="withdrawForMiniProgram" class="tixian" formType="submit">提现</button>
+        </form>
+        <view style="color: #888888;font-size: 24rpx;text-align: center">1-5个工作日到账</view>
+        <view style="color: #888888;font-size: 24rpx;text-align: center">每日5次提现机会</view>
+    </view>
+</view>
+<view class="success-tip" wx:if="{{isShowSuccessTip}}">
+    <view class="content">
+        <image class="tixian-bg" src="/static/tixian/tixian-result.png"></image>
+        <view class="c1">提现成功！</view>
+        <view class="c2">分享到群<text style="font-size: 25rpx;font-weight: bold">（更快到账）</text>
+            <button openType="share"></button>
+        </view>
+        <view bindtap="closeSuccessTip" class="close">×</view>
+    </view>
+</view>
