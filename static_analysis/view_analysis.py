@@ -22,15 +22,16 @@ class ViewAnalyz:
                 if 'bindtap' in view.attrs:
                     results.append(view)
                     print('找到关于\"',view.text,'\"的事件',view.attrs['bindtap'])
-                    print('猜测位置为\n',views_ext.path)
+                    print('猜测位置为',views_ext.path.split('.')[0]+'.js')
             if view.name == 'textarea':
                 if 'bindinput' in view.attrs:
                     results.append(view)
                     if 'data-a' in view.attrs:
-                        print('找到输入框',view.attrs['data-a'],'，其绑定的处理逻辑',view.attrs['bindinput'])
+                        print('找到输入框[',view.attrs['data-a'],']，其绑定的处理逻辑',view.attrs['bindinput'])
+                    elif 'placeholder' in view.attrs:
+                        print('找到提示文字为[',view.attrs['placeholder'],']输入框','，其绑定的处理逻辑',view.attrs['bindinput'])
                     else:
-                        print('找到输入框',view.attrs['data-a'],'，其绑定的处理逻辑',view.attrs['bindinput'])
- 
-                    print('猜测位置为',views_ext.path)
+                        print('找到输入框，其绑定的处理逻辑',view.attrs['bindinput'])
+                    print('猜测位置为',views_ext.path.split('.')[0]+'.js')
         return results
 #ViewAnalyz('64/pages/detail/detail.wxml')

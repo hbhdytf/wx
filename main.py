@@ -43,6 +43,5 @@ for wxml_path in wxmls_path :
     analyz.append(wxml)
 
 
-#ViewAnalyz('64/pages/detail/detail.wxml')
 
 
