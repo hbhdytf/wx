@@ -54,4 +54,4 @@ seg_list=jieba.cut(s,cut_all=False)
 
 fenci="/ ".join(seg_list)
 print('get web-->',s)
-print('div result-》',fenci)
+print('div result->',fenci)
