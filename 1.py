@@ -32,7 +32,7 @@ print(reslut)
 
 
 
-
+###功能词云###
 
 import urllib.request
 import re

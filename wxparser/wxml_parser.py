@@ -21,5 +21,21 @@ class WxmlParser:
                 resluts.append(line.strip())
         #print({'strings':resluts})
         return({'strings':resluts})
+    def views_extractor(self):
+        resluts=[]
+
+        ## 待优化，先这么来
+        for view in self.soup.find_all('view',text=re.compile('发送')):
+            #print(view)
+            resluts.append(view)
+        for view in self.soup.find_all('textarea',attrs={'data-a':re.compile('评论')}):
+            #print(view)
+            resluts.append(view)
+
+        for view in self.soup.find_all('textarea',attrs={'placeholder':re.compile('聊')}):
+            #print(view,"###")  
+            resluts.append(view)
+
+        return resluts
     
     
