@@ -44,7 +44,27 @@ for js_path in js_paths :
     js = ApisExt(js_path)
     ret  +=js.apis_feature()
 r = Counter(ret)
-print(r)
+#print(r)
+print('+%-30s+%-10s+'%('-'*30,'-'*10))
+print('+%-28s+%-8s+'%('API统计','频度'))
+print('+%-30s+%-10s+'%('-'*30,'-'*10))
+for i in Counter(ret):
+    print('|%-30s|%-10d|'%(i,r[i]))
+    print('+%-30s+%-10s+'%('-'*30,'-'*10))
+    #print(i,r[i])
+########分析部分功能
+#1.根据视频videocontext 判定可输入视频
+#1.根据img 判定有图片
+#1.根据view 判定有文字
+#2.根据关键词+textarea 判定可输入文字
+#2.图片?视频?音频RecorderManager?视频?
+#3.推送？根据动态分析？根据wx.request分析是否有广播发布功能/
+#4.根据share判断有分享到微信好友/好友群
+#5.使用者发布 无
+#6.使用者转发？
+#7.使用者社交 见contact 可1对1 
+#7.wx.addPhoneContact 添加好友
+
 
 
 print('######-------视图层分析------#######')
