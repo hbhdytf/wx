@@ -59,7 +59,6 @@ print('div result->s',fenci)
 
 for view in soup.find_all('view',text=re.compile('分享到')):
     print(view)
-<<<<<<< HEAD
 for view in soup.find_all('view',text=re.compile(r'分享')):
     print(view)
 for view in soup.find_all('view',text=re.compile('\w群\w')):
@@ -84,15 +83,3 @@ print(word)
 
 for view in soup.find_all('button',attrs={'opentype':'share'}):
     print(view)
-=======
-for view in soup.find_all('image',text=re.compile('分享到')):
-    print(view)
-for view in soup.find_all('view',text=re.compile(r'分享')):
-    print(view)
-
-r = soup.find_all('view',attrs={'class':'btn-pink btn-share'})
-t= r[0].find_all('view')
-
-print(t)
-print(r[0].text)
->>>>>>> e95b6b6bee80bef8e8fd82b237c3b312ac4717b1

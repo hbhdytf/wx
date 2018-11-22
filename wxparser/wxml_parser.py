@@ -44,12 +44,8 @@ class WxmlParser:
                 resluts.append(view)
             for view in self.soup.find_all('textarea',attrs={'placeholder':re.compile(word)}):
                 resluts.append(view)
-<<<<<<< HEAD
             for view in self.soup.find_all('button',text=re.compile(word)):
                 resluts.append(view)
-=======
-        print(resluts)
->>>>>>> e95b6b6bee80bef8e8fd82b237c3b312ac4717b1
         return resluts
     
     

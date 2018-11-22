@@ -23,12 +23,9 @@ class ViewAnalyz:
                     results.append(view)
                     print('找到关于\"',view.text,'\"的事件',view.attrs['bindtap'])
                     print('猜测位置为',views_ext.path.split('.')[0]+'.js')
-<<<<<<< HEAD
                 else:
                     results.append(view)
                     print('找到关于[',view.attrs['placeholder'] if ('placeholder' in view.attrs) else view.text  ,']的视图,位置：',views_ext.path)
-=======
->>>>>>> e95b6b6bee80bef8e8fd82b237c3b312ac4717b1
             if view.name == 'textarea':
                 if 'bindinput' in view.attrs:
                     results.append(view)
