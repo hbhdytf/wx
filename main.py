@@ -5,6 +5,8 @@ from feature.views_extractor import ViewsExt
 from static_analysis.view_analysis import ViewAnalyz
 from static_analysis.share_analysis import ShareAnalyz
 from feature.apis_extractor import ApisExt
+from wxparser.api import *
+from static_analysis.video_analysis import *
 import static_analysis.share_analysis
 from wxparser.word import Words
 from collections import Counter
@@ -74,13 +76,26 @@ analyz=[]
 for wxml_path in wxmls_path :
     wxml = ViewAnalyz(wxml_path)
     analyz.append(wxml)
+print('#############控制层功能分析############')
+print('发现以下敏感API调用：')
+for i in Counter(ret):
+    if i in apis_dict.keys():
+        print(i,apis_dict[i])
+
 
 print('#############视图层功能分析############')
 for wxml_path in wxmls_path :
     wxml = ShareAnalyz(wxml_path)
     analyz.append(wxml)
-print('############函数层发现分享事件##########')
+
+print('############控制层发现分享事件##########')
 static_analysis.share_analysis.get_share_from_Listener('64')
+
+print('###########视频功能分析##################')
+video_analyz()
+
+print('###########开发者发布分析##################')
+manager_analyz()
 
 
     

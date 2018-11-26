@@ -27,3 +27,6 @@ class ApisExt:
         word = ['wx.'+i for i in word]
         #print(word)
         return word
+
+def apis_extractor(path):
+    return []
